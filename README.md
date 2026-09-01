@@ -1,16 +1,110 @@
-# React + Vite
+AI Study Desk
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI Study Desk is a full-stack AI-powered study assistant that converts a topic or study notes into interactive flashcards.
 
-Currently, two official plugins are available:
+The application allows users to provide study material, choose a difficulty level and number of cards, and generate structured flashcards using the Gemini API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Generate AI-powered flashcards from study topics or notes
+- Choose flashcard difficulty:
+  - Easy
+  - Medium
+  - Hard
+- Choose the number of flashcards:
+  - 5
+  - 7
+  - 10
+- Reveal and hide answers
+- Navigate between flashcards
+- Flashcard progress indicator
+- Keyboard navigation using arrow keys
+- Loading state during AI generation
+- Error handling with retry support
+- Validation of AI-generated responses
+- Responsive UI
+- Production deployment on Vercel
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+
+- React
+- Vite
+- JavaScript
+- Tailwind CSS
+
+### Backend
+
+- Node.js
+- Express.js
+- CORS
+- dotenv
+
+### AI & Validation
+
+- Google Gemini API
+- `@google/genai`
+- Zod
+
+### Development & Deployment
+
+- Git
+- GitHub
+- Vercel
+- Concurrently
+
+---
+
+## How It Works
+
+1. The user enters a topic or pastes study notes.
+2. The user selects a difficulty level and number of flashcards.
+3. React stores these values in component state.
+4. The frontend sends a `POST` request to `/api/generate`.
+5. The Express backend receives and validates the request.
+6. The backend sends the study material and generation requirements to Gemini.
+7. Gemini returns structured flashcard data.
+8. The backend parses the AI response.
+9. Zod validates the generated data before it is returned to the frontend.
+10. React displays the validated flashcards.
+11. The user can reveal answers and navigate through the generated cards.
+
+---
+
+## Application Architecture
+
+```text
+                    User
+                     |
+                     v
+              React Frontend
+                     |
+                     | POST /api/generate
+                     v
+              Express Backend
+                     |
+              Request Validation
+                     |
+                     v
+                Gemini API
+                     |
+             Structured Response
+                     |
+                     v
+                JSON.parse()
+                     |
+                     v
+              Zod Validation
+                     |
+              +------+------+
+              |             |
+            Valid         Invalid
+              |             |
+              v             v
+          React UI        API Error
+              |
+              v
+       Interactive Cards
