@@ -16,7 +16,7 @@ Users can enter their study material, select a difficulty level and number of ca
 - AI response validation using Zod
 - Structured AI output using Gemini JSON schema
 - Responsive and clean UI
-- Backend API with Express
+- Express backend API
 - Deployed on Vercel
 
 ## Tech Stack
@@ -35,16 +35,20 @@ Users can enter their study material, select a difficulty level and number of ca
 - CORS
 - dotenv
 
+### Deployment
+- Vercel
+- GitHub
+
 ## How It Works
 
-1. Enter a topic or paste study notes.
+1. Enter a topic or paste your study notes.
 2. Select the difficulty level.
 3. Select the number of flashcards.
 4. Click **Generate Study Material**.
 5. The backend sends the study material and preferences to Gemini.
-6. Gemini returns structured flashcard data.
+6. Gemini generates structured flashcard data.
 7. The backend validates the AI response using Zod.
-8. Valid flashcards are returned to the React frontend.
+8. The validated flashcards are displayed in the React frontend.
 9. Users can reveal answers and navigate through the cards.
 
 ## Project Structure
@@ -74,6 +78,3 @@ ai-study-desk/
 ├── vercel.json
 ├── .gitignore
 └── README.md
-
-## Deployment
-The application is deployed on Vercel, with GitHub used for version control and continuous deployment.
