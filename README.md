@@ -1,4 +1,4 @@
-AI Study Desk
+# AI Study Desk
 
 AI Study Desk is a full-stack AI-powered study assistant that converts a topic or study notes into interactive flashcards.
 
