@@ -1,110 +1,79 @@
 # AI Study Desk
 
-AI Study Desk is a full-stack AI-powered study assistant that converts a topic or study notes into interactive flashcards.
+AI Study Desk is a full-stack AI-powered study application that converts a topic or study notes into useful flashcards.
 
-The application allows users to provide study material, choose a difficulty level and number of cards, and generate structured flashcards using the Gemini API.
+Users can enter their study material, select a difficulty level and number of cards, and generate structured flashcards using Google's Gemini API.
 
 ## Features
 
-- Generate AI-powered flashcards from study topics or notes
-- Choose flashcard difficulty:
-  - Easy
-  - Medium
-  - Hard
-- Choose the number of flashcards:
-  - 5
-  - 7
-  - 10
-- Reveal and hide answers
+- Generate AI-powered flashcards from topics or notes
+- Choose difficulty: Easy, Medium, or Hard
+- Choose number of flashcards: 5, 7, or 10
+- Reveal and hide flashcard answers
 - Navigate between flashcards
-- Flashcard progress indicator
 - Keyboard navigation using arrow keys
-- Loading state during AI generation
-- Error handling with retry support
-- Validation of AI-generated responses
-- Responsive UI
-- Production deployment on Vercel
-
----
+- Loading and error states
+- AI response validation using Zod
+- Structured AI output using Gemini JSON schema
+- Responsive and clean UI
+- Backend API with Express
+- Deployed on Vercel
 
 ## Tech Stack
 
 ### Frontend
-
 - React
 - Vite
-- JavaScript
 - Tailwind CSS
+- JavaScript
 
 ### Backend
-
 - Node.js
-- Express.js
+- Express
+- Google Gemini API
+- Zod
 - CORS
 - dotenv
 
-### AI & Validation
-
-- Google Gemini API
-- `@google/genai`
-- Zod
-
-### Development & Deployment
-
-- Git
-- GitHub
-- Vercel
-- Concurrently
-
----
-
 ## How It Works
 
-1. The user enters a topic or pastes study notes.
-2. The user selects a difficulty level and number of flashcards.
-3. React stores these values in component state.
-4. The frontend sends a `POST` request to `/api/generate`.
-5. The Express backend receives and validates the request.
-6. The backend sends the study material and generation requirements to Gemini.
-7. Gemini returns structured flashcard data.
-8. The backend parses the AI response.
-9. Zod validates the generated data before it is returned to the frontend.
-10. React displays the validated flashcards.
-11. The user can reveal answers and navigate through the generated cards.
+1. Enter a topic or paste study notes.
+2. Select the difficulty level.
+3. Select the number of flashcards.
+4. Click **Generate Study Material**.
+5. The backend sends the study material and preferences to Gemini.
+6. Gemini returns structured flashcard data.
+7. The backend validates the AI response using Zod.
+8. Valid flashcards are returned to the React frontend.
+9. Users can reveal answers and navigate through the cards.
 
----
-
-## Application Architecture
+## Project Structure
 
 ```text
-                    User
-                     |
-                     v
-              React Frontend
-                     |
-                     | POST /api/generate
-                     v
-              Express Backend
-                     |
-              Request Validation
-                     |
-                     v
-                Gemini API
-                     |
-             Structured Response
-                     |
-                     v
-                JSON.parse()
-                     |
-                     v
-              Zod Validation
-                     |
-              +------+------+
-              |             |
-            Valid         Invalid
-              |             |
-              v             v
-          React UI        API Error
-              |
-              v
-       Interactive Cards
+ai-study-desk/
+├── api/
+│   └── index.js
+├── server/
+│   ├── aiSchema.js
+│   ├── schemas.js
+│   └── server.js
+├── src/
+│   ├── components/
+│   │   ├── EmptyState.jsx
+│   │   ├── Flashcard.jsx
+│   │   ├── FlashcardList.jsx
+│   │   ├── Header.jsx
+│   │   └── StudyInput.jsx
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+├── public/
+├── package.json
+├── vite.config.js
+├── vercel.json
+├── .gitignore
+└── README.md
+
+##Deployment
+The application is deployed on Vercel, with GitHub used for version control and continuous deployment.
