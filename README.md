@@ -75,5 +75,5 @@ ai-study-desk/
 ├── .gitignore
 └── README.md
 
-##Deployment
+## Deployment
 The application is deployed on Vercel, with GitHub used for version control and continuous deployment.
